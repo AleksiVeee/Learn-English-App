@@ -1,1 +1,16 @@
 get http://localhost:8080/api/words
+
+###
+
+post http://localhost:8080/api/words
+Content-Type: application/json
+
+{
+  "english_word": "example",
+  "finnish_word": "esimerkki",
+  "learning_direction": "english_to_finnish"
+}
+
+###
+
+delete http://localhost:8080/api/words/2
