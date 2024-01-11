@@ -30,15 +30,31 @@ module.exports = {
 
   deleteById: (id) => {
     return new Promise((resolve, reject) => {
+      pool.query("DELETE FROM words WHERE id = ?", [id], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          if (results.affectedRows > 0) {
+            resolve(results);
+          } else {
+            reject(new Error("not found"));
+          }
+        }
+      });
+    });
+  },
+
+  partialUpdate: (id, changes) => {
+    return new Promise((resolve, reject) => {
       pool.query(
-        "DELETE FROM words WHERE id = ?",
-        [id],
+        "UPDATE words SET ? WHERE id = ?",
+        [changes, id],
         (error, results) => {
           if (error) {
             reject(error);
           } else {
             if (results.affectedRows > 0) {
-              resolve(results);
+              resolve({ id, ...changes });
             } else {
               reject(new Error("not found"));
             }
@@ -47,5 +63,4 @@ module.exports = {
       );
     });
   },
-
 };
