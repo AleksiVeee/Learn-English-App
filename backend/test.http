@@ -6,11 +6,18 @@ post http://localhost:8080/api/words
 Content-Type: application/json
 
 {
-  "english_word": "example",
-  "finnish_word": "esimerkki",
+  "english_word": "car",
+  "finnish_word": "auto",
   "learning_direction": "english_to_finnish"
 }
 
 ###
 
-delete http://localhost:8080/api/words/2
+delete http://localhost:8080/api/words/4
+
+###
+
+patch http://localhost:8080/api/words/1
+content-type: application/json
+
+{"english_word": "cat", "finnish_word": "kissa"}
