@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import Card from "./Card";
 
-const AdminPage = () => {
+const AdminPage = ({ wordPairs, setWordPairs }) => {
   const [language, setLanguage] = useState("fin");
   const [finnish, setFinnish] = useState("");
   const [english, setEnglish] = useState("");
@@ -32,7 +33,9 @@ const AdminPage = () => {
         "http://localhost:8080/api/words",
         newWord
       );
-      console.log(result);
+      setWordPairs([...wordPairs, result.data]);
+      setFinnish("");
+      setEnglish("");
     } catch (error) {
       console.log(error);
     }
@@ -56,6 +59,16 @@ const AdminPage = () => {
           <input onChange={handleSetEnglish} />
         </div>
         <button onClick={createNewWord}>Add</button>
+      </div>
+      <div className="card-layout">
+        {wordPairs.map((word) => (
+          <Card
+            key={word.id}
+            word={word}
+            setWordPairs={setWordPairs}
+            wordPairs={wordPairs}
+          />
+        ))}
       </div>
     </div>
   );
