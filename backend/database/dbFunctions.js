@@ -18,11 +18,12 @@ module.exports = {
     return new Promise((resolve, reject) => {
       const sql = "INSERT INTO words SET ?";
 
-      pool.query(sql, newWord, (error) => {
+      pool.query(sql, newWord, (error, results) => {
         if (error) {
           reject(error);
         } else {
-          resolve(newWord);
+          const savedWord = { ...newWord, id: results.insertId };
+          resolve(savedWord);
         }
       });
     });
