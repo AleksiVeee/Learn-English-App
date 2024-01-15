@@ -80,7 +80,7 @@ const validateWords = (req, res, next) => {
   }
 };
 
-router.post("/",validateWords, async (req, res) => {
+router.post("/", validateWords, async (req, res) => {
   try {
     const newWord = {
       english_word: req.body.english_word,
