@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState } from "react";
 import Card from "./Card";
@@ -62,11 +63,11 @@ const AdminPage = ({ wordPairs, setWordPairs }) => {
         </FormControl>
         <div className="word-original">
           <label>Finnish Word</label>
-          <input onChange={handleSetFinnish} />
+          <input value={finnish} onChange={handleSetFinnish} />
         </div>
         <div className="word-translation">
           <label>English Word</label>
-          <input onChange={handleSetEnglish} />
+          <input value={english} onChange={handleSetEnglish} />
         </div>
         <button onClick={createNewWord}>Add</button>
       </div>
