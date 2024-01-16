@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import StudentPage from "./components/StudentPage";
 import AdminPage from "./components/AdminPage";
+import LearnEnglish from "./components/LearnEnglish";
+import LearnFinnish from "./components/LearnFinnish";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/admin" element={<AdminPage wordPairs={wordPairs} setWordPairs={setWordPairs}/>} />
         <Route path="/student" element={<StudentPage />} />
+        <Route path="/student/learn-english" element={<LearnEnglish wordPairs={wordPairs} />} />
+        <Route path="/student/learn-finnish" element={<LearnFinnish wordPairs={wordPairs} />} />
       </Routes>
     </div>
   );
