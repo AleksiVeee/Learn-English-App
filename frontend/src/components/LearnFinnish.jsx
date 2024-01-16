@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom";
+
 const LearnFinnish = () => {
-    return <h1>Learn Finnish</h1>;
+    return (
+      <>
+        <Link to="/">Go Back</Link>
+        <h1>Learn Finnish</h1>
+      </>
+    );
+    
   
 };
 

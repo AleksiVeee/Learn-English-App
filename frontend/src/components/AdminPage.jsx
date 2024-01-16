@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import Card from "./Card";
+import { Link } from "react-router-dom";
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 const AdminPage = ({ wordPairs, setWordPairs }) => {
   const [language, setLanguage] = useState("fin");
@@ -44,12 +46,20 @@ const AdminPage = ({ wordPairs, setWordPairs }) => {
   return (
     <div>
       <h2>Admin Page</h2>
+      <Link to="/">Go Back</Link>
       <div>
         <p>Create word</p>
-        <select name="languages" onChange={handleSelectLanguage}>
-          <option value="fin">Finnish</option>
-          <option value="eng">English</option>
-        </select>
+        <FormControl sx={{ margin: "1rem 0rem" }}>
+          <InputLabel id="select-label">Language</InputLabel>
+          <Select
+            label="Language"
+            value={language}
+            onChange={handleSelectLanguage}
+          >
+            <MenuItem value="fin">Finnish</MenuItem>
+            <MenuItem value="eng">English</MenuItem>
+          </Select>
+        </FormControl>
         <div className="word-original">
           <label>Finnish Word</label>
           <input onChange={handleSetFinnish} />
