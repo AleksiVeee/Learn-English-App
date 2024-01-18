@@ -1,6 +1,7 @@
 const pool = require("./config.js");
 
 module.exports = {
+  //Function to get all words from the database
   findAll: () => {
     return new Promise((resolve, reject) => {
       pool.query("SELECT * FROM words", (error, results) => {
@@ -15,6 +16,7 @@ module.exports = {
   },
 
   saveWord: (newWord) => {
+    //function to save a new words to the database
     return new Promise((resolve, reject) => {
       const sql = "INSERT INTO words SET ?";
 
@@ -22,6 +24,7 @@ module.exports = {
         if (error) {
           reject(error);
         } else {
+          //makes sure that new id is added to the new word
           const savedWord = { ...newWord, id: results.insertId };
           resolve(savedWord);
         }
@@ -30,6 +33,7 @@ module.exports = {
   },
 
   deleteById: (id) => {
+    //function to delete a word pair from the database
     return new Promise((resolve, reject) => {
       pool.query("DELETE FROM words WHERE id = ?", [id], (error, results) => {
         if (error) {
@@ -46,6 +50,7 @@ module.exports = {
   },
 
   partialUpdate: (id, changes) => {
+    //function to update a word in the database
     return new Promise((resolve, reject) => {
       pool.query(
         "UPDATE words SET ? WHERE id = ?",
