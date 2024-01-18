@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
+import { TranslationBox } from "../material_ui_styles";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const WordTest = ({ word, setScore, learningDirection }) => {
   const [userInput, setUserInput] = useState("");
@@ -39,13 +41,20 @@ const WordTest = ({ word, setScore, learningDirection }) => {
   };
 
   //Conditionally render right language using the learningDirection value
+  //Check if answer is correct and pass color as props to change background color
+  //Render icon if asnwer is right (answerChecker = true)
   return (
-    <div>
+    <TranslationBox answercolor={answerChecker ? "lightgreen" : "white"}>
       <h3>
         {learningDirection === "eng" ? word.finnish_word : word.english_word}
       </h3>
+      {answerChecker ? (
+        <CheckCircleOutlineIcon
+          style={{ fontsize: "2rem", color: "lightgreen" }}
+        />
+      ) : null}
       <input onChange={handleInputChange} />
-    </div>
+    </TranslationBox>
   );
 };
 

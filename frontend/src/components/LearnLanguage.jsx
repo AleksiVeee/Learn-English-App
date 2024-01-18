@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WordTest from "./WordTest";
+import { Container, Button, Box } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const LearnLanguage = ({ wordPairs, learningDirection }) => {
   const [words, setWords] = useState([]);
@@ -23,16 +25,31 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
   }, [wordPairs, learningDirection]);
 
   const handleRefreshWindow = () => {
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   //Render the page content and build word quiz with component WordTest
   return (
-    <>
-      <Link to={"/student"}>Go Back</Link>
+    <Container maxWidth="sm">
       <h1>{`Translate to ${
         learningDirection === "eng" ? "English" : "Finnish"
       }`}</h1>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Link to={"/student"}>
+          <Button variant="contained" startIcon={<ArrowBackIcon />}>
+            Go Back
+          </Button>
+        </Link>
+        <h3>
+          Score: {score}/{words.length}
+        </h3>
+      </Box>
       {words.map((word) => (
         <WordTest
           key={word.id}
@@ -41,11 +58,10 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
           learningDirection={learningDirection}
         />
       ))}
-      <h3>
-        Score: {score}/{words.length}
-      </h3>
-      <button onClick={handleRefreshWindow}>Refresh Words</button>
-    </>
+      <Button variant="contained" onClick={handleRefreshWindow}>
+        Refresh Words
+      </Button>
+    </Container>
   );
 };
 

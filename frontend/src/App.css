@@ -1,13 +1,16 @@
-/*AdminPage styles*/
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("/public/app-background.jpg");
+}
+
+/*AdminPage.jsx styles*/
 .card-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 2rem;
 }
 
-
 /*Card  styles*/
-
 .card-content {
   padding: 1.5rem;
   box-shadow: 5px 5px 20px 0px rgb(90, 88, 88, 0.25);

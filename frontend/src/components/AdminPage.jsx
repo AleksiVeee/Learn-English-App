@@ -1,9 +1,18 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState } from "react";
-import Card from "./Card";
+import WordCard from "./WordCard";
 import { Link } from "react-router-dom";
-import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  Container,
+  Button,
+  Box,
+} from "@mui/material";
+import { CreateBox } from "../material_ui_styles";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const AdminPage = ({ wordPairs, setWordPairs }) => {
   const [language, setLanguage] = useState("fin");
@@ -45,35 +54,44 @@ const AdminPage = ({ wordPairs, setWordPairs }) => {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Admin Page</h2>
-      <Link to="/">Go Back</Link>
-      <div>
-        <p>Create word</p>
-        <FormControl sx={{ margin: "1rem 0rem" }}>
-          <InputLabel id="select-label">Language</InputLabel>
-          <Select
-            label="Language"
-            value={language}
-            onChange={handleSelectLanguage}
-          >
-            <MenuItem value="fin">Finnish</MenuItem>
-            <MenuItem value="eng">English</MenuItem>
-          </Select>
-        </FormControl>
-        <div className="word-original">
-          <label>Finnish Word</label>
-          <input value={finnish} onChange={handleSetFinnish} />
-        </div>
-        <div className="word-translation">
-          <label>English Word</label>
-          <input value={english} onChange={handleSetEnglish} />
-        </div>
-        <button onClick={createNewWord}>Add</button>
-      </div>
+      <Link to="/">
+        <Button variant="contained" startIcon={<ArrowBackIcon />}>
+          Go Back
+        </Button>
+      </Link>
+      <CreateBox sx={{ display: "flex", alignItems: "end" }}>
+        <Box>
+          <FormControl>
+            <p>Choose primary language for the word</p>
+            <Select value={language} onChange={handleSelectLanguage}>
+              <MenuItem value="fin">Finnish</MenuItem>
+              <MenuItem value="eng">English</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box>
+          <div style={{ marginBottom: ".5rem" }}>
+            <label>Finnish Word</label>
+            <input value={finnish} onChange={handleSetFinnish} />
+          </div>
+          <div>
+            <label>English Word</label>
+            <input value={english} onChange={handleSetEnglish} />
+          </div>
+        </Box>
+        <Button
+          variant="contained"
+          sx={{ padding: ".5rem 2.5rem" }}
+          onClick={createNewWord}
+        >
+          Add
+        </Button>
+      </CreateBox>
       <div className="card-layout">
         {wordPairs.map((word) => (
-          <Card
+          <WordCard
             key={word.id}
             word={word}
             setWordPairs={setWordPairs}
@@ -81,7 +99,7 @@ const AdminPage = ({ wordPairs, setWordPairs }) => {
           />
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
