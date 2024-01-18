@@ -8,16 +8,16 @@ Content-Type: application/json
 {
   "english_word": "car",
   "finnish_word": "auto",
-  "learning_direction": "english_to_finnish"
+  "learning_direction": "eng"
 }
 
 ###
 
-delete http://localhost:8080/api/words/4
+delete http://localhost:8080/api/words/1
 
 ###
 
-patch http://localhost:8080/api/words/1
+patch http://localhost:8080/api/words/65
 content-type: application/json
 
-{"english_word": "cat", "finnish_word": "kissa"}
+{"english_word": "car", "finnish_word": "auto"}
