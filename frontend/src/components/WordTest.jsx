@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 const WordTest = ({ word, setScore, learningDirection }) => {
   const [userInput, setUserInput] = useState("");
+  const [answerChecker, setAnswerChecker] = useState(false);
   const correctTranslationRef = useRef(
     learningDirection === "eng" ? word.english_word : word.finnish_word
   );
@@ -15,13 +16,20 @@ const WordTest = ({ word, setScore, learningDirection }) => {
 
     if (
       userInput.toLocaleLowerCase() ===
-      correctTranslationRef.current.toLocaleLowerCase()
+        correctTranslationRef.current.toLocaleLowerCase() &&
+      !answerChecker
     ) {
       setScore((prevScore) => prevScore + 1);
+      setAnswerChecker(true);
     }
 
-    if (userInput === "") {
+    if (
+      userInput.toLocaleLowerCase() !==
+        correctTranslationRef.current.toLocaleLowerCase() &&
+      answerChecker
+    ) {
       setScore((prevScore) => Math.max(0, prevScore - 1));
+      setAnswerChecker(false);
     }
   }, [userInput, learningDirection, word, setScore]);
 
@@ -41,4 +49,4 @@ const WordTest = ({ word, setScore, learningDirection }) => {
   );
 };
 
-export default WordTest
+export default WordTest;

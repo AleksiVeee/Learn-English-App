@@ -22,6 +22,10 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
     setWords(subset);
   }, [wordPairs, learningDirection]);
 
+  const handleRefreshWindow = () => {
+    window.location.reload()
+  }
+
   //Render the page content and build word quiz with component WordTest
   return (
     <>
@@ -40,6 +44,7 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
       <h3>
         Score: {score}/{words.length}
       </h3>
+      <button onClick={handleRefreshWindow}>Refresh Words</button>
     </>
   );
 };
