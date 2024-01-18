@@ -2,6 +2,7 @@ const database = require("../database/dbFunctions.js");
 const express = require("express");
 const router = express.Router();
 
+//Route for getting all words from the database
 router.get("/", async (req, res) => {
   try {
     const words = await database.findAll();
@@ -14,6 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Route for deleting a word pair from the database using the id
 router.delete("/:myId([0-9]+)", async (req, res) => {
   try {
     const id = parseInt(req.params.myId);
@@ -28,16 +30,17 @@ router.delete("/:myId([0-9]+)", async (req, res) => {
   }
 });
 
+//Middleware for validating the data in the request body for the patch route
 const validatePatchWords = (req, res, next) => {
   const { english_word, finnish_word } = req.body;
   const isString = (value) => typeof value === "string";
   const isNumericString = (value) => !isNaN(value);
 
   if (
-    (english_word !== undefined &&
-      (!isString(english_word) || isNumericString(english_word))) ||
-    (finnish_word !== undefined &&
-      (!isString(finnish_word) || isNumericString(finnish_word)))
+    !isString(english_word) ||
+    isNumericString(english_word) ||
+    !isString(finnish_word) ||
+    isNumericString(finnish_word)
   ) {
     res
       .status(400)
@@ -47,6 +50,7 @@ const validatePatchWords = (req, res, next) => {
   }
 };
 
+//Route for updating a word pair in the database using the id
 router.patch("/:myId([0-9]+)", validatePatchWords, async (req, res) => {
   try {
     const id = parseInt(req.params.myId);
@@ -61,16 +65,17 @@ router.patch("/:myId([0-9]+)", validatePatchWords, async (req, res) => {
   }
 });
 
+//Middleware for validating the data in the request body for the post route
 const validateWords = (req, res, next) => {
   const { english_word, finnish_word } = req.body;
   const isString = (value) => typeof value === "string";
   const isNumericString = (value) => !isNaN(value);
 
   if (
-    (english_word !== undefined &&
-      (!isString(english_word) || isNumericString(english_word))) ||
-    (finnish_word !== undefined &&
-      (!isString(finnish_word) || isNumericString(finnish_word)))
+    !isString(english_word) ||
+    isNumericString(english_word) ||
+    !isString(finnish_word) ||
+    isNumericString(finnish_word)
   ) {
     res
       .status(400)
@@ -80,6 +85,7 @@ const validateWords = (req, res, next) => {
   }
 };
 
+//Route for adding a new word pair to the database
 router.post("/", validateWords, async (req, res) => {
   try {
     const newWord = {
