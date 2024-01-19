@@ -9,7 +9,7 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
   const [words, setWords] = useState([]);
   const [score, setScore] = useState(0);
 
-  //Filter and take 10 random "eng" tagged words and insert them into englishWords state
+  //Filter and take 10 random tagged words from the database
   const getRandomSubset = (array, count) => {
     const filterWords = array.filter(
       (word) => word.learning_direction === learningDirection
@@ -18,7 +18,7 @@ const LearnLanguage = ({ wordPairs, learningDirection }) => {
     return shuffledArray.slice(0, count);
   };
 
-  //Run useEffect at the first render and set the state to be max 10 random "eng" tagged words
+  //Run useEffect at the first render and set the state to be max 10 random words
   useEffect(() => {
     const subset = getRandomSubset(wordPairs, 10);
     setWords(subset);
