@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const port = 8080;
 app.use(express.json());
-app.use(express.static("./frontend/dist"))
+app.use(express.static("./frontend/dist"));
 app.use(cors());
 
 app.use("/api/words", wordsRouter);
