@@ -58,6 +58,10 @@ CREATE TABLE words (
 ```
 ## Screencast
 
+## Bugs
+
+No known bugs at the moment
+
 https://www.youtube.com/watch?v=3IdDkCJxpR4
 
 ## Other
