@@ -16,7 +16,9 @@ const WordCard = ({ word, setWordPairs, wordPairs }) => {
   //Delete wordpair from database
   const handleDeleteCard = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/words/${word.id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/words/${word.id}`
+      );
       setWordPairs((prevState) => prevState.filter((w) => w.id !== word.id));
     } catch (error) {
       console.log(error);
@@ -31,11 +33,11 @@ const WordCard = ({ word, setWordPairs, wordPairs }) => {
     setUpdateEnglish(e.target.value);
   };
 
-  //Update wordpair
+  //Update wordPair
   const handleUpdateCard = async () => {
     try {
       const results = await axios.patch(
-        `http://localhost:8080/api/words/${word.id}`,
+        `${import.meta.env.VITE_API_URL}/api/words/${word.id}`,
         { finnish_word: updateFinnish, english_word: updateEnglish }
       );
       const updatedWords = wordPairs.map((word) =>

@@ -41,8 +41,7 @@ const AdminPage = ({ wordPairs, setWordPairs }) => {
     };
 
     try {
-      const result = await axios.post(
-        "http://localhost:8080/api/words",
+      const result = await axios.post(`${import.meta.env.VITE_API_URL}/api/words`,
         newWord
       );
       setWordPairs([...wordPairs, result.data]);

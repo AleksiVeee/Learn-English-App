@@ -13,7 +13,7 @@ function App() {
   //Get data from the database and store them in the "wordPairs" state
   useEffect(() => {
     const getData = async () => {
-      const result = await axios.get("http://localhost:8080/api/words");
+      const result = await axios.get(`${import.meta.env.VITE_API_URL}/api/words`);
       setWordPairs(result.data);
     };
     getData();
