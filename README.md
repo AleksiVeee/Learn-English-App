@@ -56,6 +56,10 @@ CREATE TABLE words (
   PRIMARY KEY (id)
 );
 ```
+## Screencast
+
+https://www.youtube.com/watch?v=3IdDkCJxpR4
+
 ## Other
 
 The app is also currently running in the cloud:
