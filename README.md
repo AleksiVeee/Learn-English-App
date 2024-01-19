@@ -56,11 +56,11 @@ CREATE TABLE words (
   PRIMARY KEY (id)
 );
 ```
-## Screencast
-
 ## Bugs
 
 No known bugs at the moment
+
+## Screencast
 
 https://www.youtube.com/watch?v=3IdDkCJxpR4
 
