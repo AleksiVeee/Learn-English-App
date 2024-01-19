@@ -10,13 +10,13 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the build folder
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use(express.static(path.join(__dirname, "./frontend/dist")));
 
 app.use("/api/words", wordsRouter);
 
 // Handle client-side routing
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "./frontend/dist", "index.html"));
 });
 
 const server = app
