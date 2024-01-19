@@ -2,7 +2,7 @@
 
 ![Screenshot](screenshot/readme-pic.png)
 
-App made for translating Enhlish words to Finnish or vice versa. App supports two users (Teacher and student).
+App made for translating English words to Finnish or vice versa. App supports two users (Teacher and student).
 Teacher can add word pairs to the system and student then can try to translate them with a quiz like form.
 
 ## Moticvation
@@ -40,13 +40,13 @@ After cloning the repository to your platform:
 4. after that you can run these commands in the root of the project to start the app
     - **npm run dev:backend** and **npm run dev:frontend**
 
-[!NOTE]
-The app uses environment variables for connecting to the database.
-You need to add your own .env file into the root of the project and
-connect to your own database.
+>[!NOTE]
+>The app uses environment variables for connecting to the database.
+>You need to add your own .env file into the root of the project and
+>connect to your own database.
 
-This is the query to create same structure for the database that is used 
-for this app:
+>This is the query to create same structure for the database that is used 
+>for this app:
 ```
 CREATE TABLE words (
   id INT(11) NOT NULL AUTO_INCREMENT,
