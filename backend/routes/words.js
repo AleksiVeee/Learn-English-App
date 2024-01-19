@@ -2,7 +2,13 @@ const database = require("../database/dbFunctions.js");
 const express = require("express");
 const router = express.Router();
 
-//Route for getting all words from the database
+/**
+ * route for getting all words from the database
+ * @route GET /api/words
+ * @param {string} path - the path for the route
+ * @param {callback} middleware - the middleware for the route
+ * @returns {object} - the response object containing the words
+ */
 router.get("/", async (req, res) => {
   try {
     const words = await database.findAll();
@@ -15,7 +21,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Route for deleting a word pair from the database using the id
+/**
+ * route for deleting a word pair from the database using the id
+ * @route DELETE /api/words/:myId
+ * @param {string} path - the path for the route with the id
+ * @param {callback} middleware - the middleware for the route
+ * @returns {object} - the response object containing the deleted word pair
+ */
 router.delete("/:myId([0-9]+)", async (req, res) => {
   try {
     const id = parseInt(req.params.myId);
@@ -30,7 +42,13 @@ router.delete("/:myId([0-9]+)", async (req, res) => {
   }
 });
 
-//Middleware for validating the data in the request body for the patch route
+/**
+ * middleware for validating the data in the request body for the patch route
+ * @param {object} req - the request object 
+ * @param {object} res - the response object
+ * @param {callback} next - the callback function for the next middleware
+ * @returns {object} - the response object containing the error message
+ */
 const validatePatchWords = (req, res, next) => {
   const { english_word, finnish_word } = req.body;
   const isString = (value) => typeof value === "string";
@@ -50,7 +68,13 @@ const validatePatchWords = (req, res, next) => {
   }
 };
 
-//Route for updating a word pair in the database using the id
+/**
+ * route for updating a word pair in the database using the id
+ * @route PATCH /api/words/:myId
+ * @param {string} path - the path for the route with the id
+ * @param {callback} middleware - the middleware for the route 
+ * @returns {object} - the response object containing the updated word pair
+ */
 router.patch("/:myId([0-9]+)", validatePatchWords, async (req, res) => {
   try {
     const id = parseInt(req.params.myId);
@@ -65,7 +89,13 @@ router.patch("/:myId([0-9]+)", validatePatchWords, async (req, res) => {
   }
 });
 
-//Middleware for validating the data in the request body for the post route
+/**
+ * middleware for validating the data in the request body for the post route
+ * @param {object} req - the request object 
+ * @param {object} res - the response object
+ * @param {callback} next - the callback function for the next middleware
+ * @returns {object} - the response object containing the error message
+ */
 const validateWords = (req, res, next) => {
   const { english_word, finnish_word } = req.body;
   const isString = (value) => typeof value === "string";
@@ -85,7 +115,13 @@ const validateWords = (req, res, next) => {
   }
 };
 
-//Route for adding a new word pair to the database
+/**
+ * route for adding a new word pair to the database
+ * @route POST /api/words
+ * @param {string} path - the path for the route
+ * @param {callback} middleware - the middleware for the route 
+ * @returns {object} - the response object containing the new word pair
+ */
 router.post("/", validateWords, async (req, res) => {
   try {
     const newWord = {

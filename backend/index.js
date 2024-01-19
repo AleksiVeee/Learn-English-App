@@ -14,11 +14,18 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use("/api/words", wordsRouter);
 
-// Handle client-side routing
+// For any unmatched route, serve the React apps index.html
+// This ensures that client-side routing takes over
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
+/**
+ * Start Express server.
+ * Listen on provided port, on all network interfaces.
+ * @param {number} port
+ * @returns {object} server
+ */
 const server = app
   .listen(port, () => {
     console.log(`SERVER: listening on port ${port}`);
@@ -28,6 +35,9 @@ const server = app
     process.exit(1);
   });
 
+/**
+ * Gracefully shutdown the server.
+ */
 const gracefulShutdown = () => {
   console.log("SERVER: Starting graceful shutdown...");
   if (server) {
@@ -51,5 +61,10 @@ const gracefulShutdown = () => {
   }
 };
 
+/**
+ * Handle shutdown signals.
+ * @param {string} signal
+ * @returns {function} gracefulShutdown
+ */
 process.on("SIGTERM", gracefulShutdown); // Some other app requires shutdown.
 process.on("SIGINT", gracefulShutdown); // ctrl-c
