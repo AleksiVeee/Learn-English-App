@@ -5,7 +5,7 @@
 App made for translating English words to Finnish or vice versa. App supports two users (Teacher and student).
 Teacher can add word pairs to the system and student then can try to translate them with a quiz like form.
 
-## Moticvation
+## Motivation
 
 This app was created as a part of my backend development course in TAMK. 
 This is the end project of the course.
